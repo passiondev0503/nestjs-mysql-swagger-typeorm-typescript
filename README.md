@@ -30,3 +30,10 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+## Documentation
+
+### Swagger Documentation
+```bash
+/api
+```
