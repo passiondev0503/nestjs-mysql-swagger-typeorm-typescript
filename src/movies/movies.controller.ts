@@ -31,8 +31,12 @@ export class MoviesController {
     return res.json(movies);
   }
 
-  @Get(":id")
-  async findOne(@Param("id") id: string, @Res() res) {
+  @Get("/find/:id")
+  async findOne(@Param("id") id: number, @Res() res) {
+    if (Number.isNaN(+id)) {
+      return res.status(HttpStatus.BAD_REQUEST).json({ message: "Invalid id" });
+    }
+
     const movie = await this.moviesService.findOne(+id);
 
     if (movie != null) {
@@ -50,12 +54,20 @@ export class MoviesController {
     @Body() updateMovieDto: UpdateMovieDto,
     @Res() res,
   ) {
+    if (Number.isNaN(+id)) {
+      return res.status(HttpStatus.BAD_REQUEST).json({ message: "Invalid id" });
+    }
+
     this.moviesService.update(+id, updateMovieDto);
     return res.status(HttpStatus.OK).json({ message: "Movie updated" });
   }
 
   @Delete(":id")
   remove(@Param("id") id: string, @Res() res) {
+    if (Number.isNaN(+id)) {
+      return res.status(HttpStatus.BAD_REQUEST).json({ message: "Invalid id" });
+    }
+
     this.moviesService.remove(+id);
     return res.status(HttpStatus.OK).json({ message: "Movie deleted" });
   }
