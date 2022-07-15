@@ -35,6 +35,7 @@ export class MoviesController {
     return res.status(HttpStatus.OK).json(this.moviesService.findOne(+id));
   }
 
+  @ApiBody({ type: UpdateMovieDto })
   @Patch(":id")
   update(
     @Param("id") id: string,

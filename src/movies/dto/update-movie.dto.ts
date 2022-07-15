@@ -1,60 +1,76 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, IsOptional, IsString } from "class-validator";
 
 export class UpdateMovieDto {
+  @IsString()
+  @IsOptional()
   @ApiProperty({
     description: "Title of the movie",
     example: "The Shawshank Redemption",
-    required: false,
+    type: String,
   })
-  title: string;
+  title?: string;
 
+  @IsInt()
+  @IsOptional()
   @ApiProperty({
     description: "Year of the movie",
     example: 1994,
-    required: false,
+    type: Number,
   })
-  year: number;
+  year?: number;
 
+  @IsInt()
+  @IsOptional()
   @ApiProperty({
     description: "Runtime of the movie",
     example: 142,
-    required: false,
+    type: Number,
   })
-  runtime: number;
+  runtime?: number;
 
+  @IsString()
+  @IsOptional()
   @ApiProperty({
     description: "Genres of the movie",
     example: "Drama",
-    required: false,
+    type: String,
   })
-  genres: string;
+  genres?: string;
 
+  @IsString()
+  @IsOptional()
   @ApiProperty({
     description: "Director of the movie",
     example: "Frank Darabont",
-    required: false,
+    type: String,
   })
   director?: string;
 
+  @IsString()
+  @IsOptional()
   @ApiProperty({
     description: "Actors of the movie",
     example: "Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler",
-    required: false,
+    type: String,
   })
   actors?: string;
 
+  @IsOptional()
   @ApiProperty({
     description: "Plot of the movie",
     example: "Two imprisoned ...",
-    required: false,
+    type: String,
   })
   plot?: string;
 
+  @IsString()
+  @IsOptional()
   @ApiProperty({
     description: "Poster of the movie",
     example:
       "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-    required: false,
+    type: String,
   })
   posterUrl?: string;
 }

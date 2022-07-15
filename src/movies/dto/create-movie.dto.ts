@@ -1,6 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class CreateMovieDto {
+  @IsString()
+  @IsNotEmpty()
   @ApiProperty({
     description: "Title of the movie",
     example: "The Shawshank Redemption",
@@ -8,6 +11,8 @@ export class CreateMovieDto {
   })
   title: string;
 
+  @IsInt()
+  @IsNotEmpty()
   @ApiProperty({
     description: "Year of the movie",
     example: 1994,
@@ -15,6 +20,8 @@ export class CreateMovieDto {
   })
   year: number;
 
+  @IsInt()
+  @IsNotEmpty()
   @ApiProperty({
     description: "Runtime of the movie",
     example: 142,
@@ -22,6 +29,8 @@ export class CreateMovieDto {
   })
   runtime: number;
 
+  @IsString()
+  @IsNotEmpty()
   @ApiProperty({
     description: "Genres of the movie",
     example: "Drama",
@@ -29,6 +38,8 @@ export class CreateMovieDto {
   })
   genres: string;
 
+  @IsString()
+  @IsOptional()
   @ApiProperty({
     description: "Director of the movie",
     example: "Frank Darabont",
@@ -36,6 +47,8 @@ export class CreateMovieDto {
   })
   director?: string;
 
+  @IsString()
+  @IsOptional()
   @ApiProperty({
     description: "Actors of the movie",
     example: "Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler",
@@ -43,6 +56,8 @@ export class CreateMovieDto {
   })
   actors?: string;
 
+  @IsString()
+  @IsOptional()
   @ApiProperty({
     description: "Plot of the movie",
     example: "Two imprisoned ...",
@@ -50,6 +65,8 @@ export class CreateMovieDto {
   })
   plot?: string;
 
+  @IsString()
+  @IsOptional()
   @ApiProperty({
     description: "Poster of the movie",
     example:
