@@ -26,13 +26,21 @@ export class MoviesController {
   }
 
   @Get("/all")
-  findAll() {
-    return this.moviesService.findAll();
+  async findAll(@Res() res) {
+    const movies = await this.moviesService.findAll();
+    return res.json(movies);
   }
 
   @Get(":id")
-  findOne(@Param("id") id: string, @Res() res) {
-    return res.status(HttpStatus.OK).json(this.moviesService.findOne(+id));
+  async findOne(@Param("id") id: string, @Res() res) {
+    const movie = await this.moviesService.findOne(+id);
+
+    if (movie != null) {
+      return res.json(movie);
+    }
+    return res
+      .status(HttpStatus.NOT_FOUND)
+      .json({ message: "Movie not found" });
   }
 
   @ApiBody({ type: UpdateMovieDto })
